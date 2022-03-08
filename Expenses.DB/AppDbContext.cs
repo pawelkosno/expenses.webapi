@@ -4,12 +4,8 @@ namespace Expenses.DB
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Expense> Expenses { get; set; }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\mssqllocaldb;Database=ExpensesDb;Trusted_Connection=True");
-        }
+        public DbSet<Expense> Expenses { get; set; }
     }
 }
